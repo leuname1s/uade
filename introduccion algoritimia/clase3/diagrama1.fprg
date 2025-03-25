@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="diagrama1"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-25 04:39:28 p.&#160;m."/>
+        <attribute name="created" value="cGM7TEFQVE9QLUJNVVZRQkkxOzIwMjUtMDMtMjU7MDI6MDU6MDEgcC7CoG0uOzI4OTA="/>
+        <attribute name="edited" value="cGM7TEFQVE9QLUJNVVZRQkkxOzIwMjUtMDMtMjU7MDQ6Mzk6MjggcC7CoG0uOzE7MzAxNg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="nro1" type="Integer" array="False" size=""/>
+            <declare name="nro2" type="Integer" array="False" size=""/>
+            <declare name="prom" type="Integer" array="False" size=""/>
+            <input variable="nro1"/>
+            <input variable="nro2"/>
+            <assign variable="prom" expression="(nro1 + nro2) / 2"/>
+            <if expression="prom &lt; 4">
+                <then>
+                    <output expression="&quot;recursa&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="prom &gt;= 8">
+                        <then>
+                            <output expression="&quot;promociona&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;rinde final&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="&quot;fin del programa&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
