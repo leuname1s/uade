@@ -23,7 +23,6 @@ dinero = dinero % 5
 billetes_1 = dinero // 1
 dinero = dinero % 1
 
-# Mostrar los resultados
 print(billetes_1000, "billetes de $1000")
 print(billetes_500, "billetes de $500")
 print(billetes_100, "billetes de $100")
