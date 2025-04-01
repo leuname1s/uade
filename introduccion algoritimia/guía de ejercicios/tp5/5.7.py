@@ -8,10 +8,10 @@ else:
 invertido = 0
 
 while numero > 0:
-    digito = numero % 10  # Obtener el último dígito
-    invertido = invertido * 10 + digito  # Construir el número invertido
-    numero //= 10  # Eliminar el último dígito
-
+    digito = numero % 10  
+    invertido = invertido * 10 + digito  
+    numero //= 10  
+    
 if negativo: 
     print(invertido * -1)
 else:
