@@ -2,7 +2,7 @@ import random
 cNiven = 0
 c = 0
 while c < 100:
-    numero = random.randint(100,999)
+    numero = random.randint(100,1000)
     sumaDigitos = 0
     numeroAux = numero
     while  numeroAux > 0:
