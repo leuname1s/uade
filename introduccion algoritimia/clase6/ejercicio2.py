@@ -6,8 +6,8 @@ cantPromocionados = 0
 cantRecuperatorio = 0
 cantFinal = 0
 cantAlumnos = 0
+resp = int(input("ingrese su numero de libreta(1000000 y 2000000) (-1 para salir): "))
 while resp != -1:
-    resp = int(input("ingrese su numero de libreta(1000000 y 2000000): "))
     if resp >= 1000000 and resp <= 2000000:
         cantAlumnos += 1
         notaParcial1 = int(input("ingrese la nota del primer parcial: "))
@@ -23,7 +23,8 @@ while resp != -1:
                 cantRecuperatorio += 1
     else:
         print("Error, el numero de libreta no es valido")
-        
+    resp = int(input("ingrese su numero de libreta(1000000 y 2000000): "))
+
         
 print("Cantidad de alumnos promocionados(más de ocho en ambos parciales): ", cantPromocionados)
 print("Cantidad de alumnos que deben rendir al menos un recuperatorio: ", cantRecuperatorio)
