@@ -3,13 +3,12 @@ h1 {
 }
 #columnas {
     width: 960px;
-
+    display: inline-block;
     margin: auto;
-
+    vertical-align: top;
 }
 #resumen{
     display: inline-block;
-
     width: 700px;
     vertical-align: top;
 
