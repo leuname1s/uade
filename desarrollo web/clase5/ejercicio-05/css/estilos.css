@@ -1,0 +1,23 @@
+h1 {
+    text-align: center;
+}
+#columnas {
+    width: 960px;
+
+    margin: auto;
+
+}
+#resumen{
+    display: inline-block;
+
+    width: 700px;
+    vertical-align: top;
+
+}
+#datos{
+    display: inline-block;
+
+    width: 260px;
+    vertical-align: top;
+    background-color: red;
+}
