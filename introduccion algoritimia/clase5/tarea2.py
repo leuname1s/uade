@@ -11,7 +11,7 @@ for i in range(30):
     c = a + b
     a = b
     b = c
-    if i > 0:
+    if i > 3:
         cont = 0
         while cont*cont < c:
             cont += 1
