@@ -1,8 +1,14 @@
 import csv  #libreria para archivos .csv
+import os
+
+#crear el path del archivo csv relativo
+directorio_actual = os.path.dirname(os.path.abspath(__file__)) 
+csvPath = os.path.join(directorio_actual, "preguntas.csv")
 
 preguntasRespuestas = dict()    #un diccionario para tener en memoria
 
-with open("preguntas.csv","r", newline="",encoding='utf-8') as csvfile:
+#registrar las preguntas y respuestas en el diccionario
+with open(csvPath,"r", newline="",encoding='utf-8') as csvfile:
     csvReader = csv.reader(csvfile)
     next(csvReader) #saltear la primera fila que es el encabezado
     for row in csvReader:
