@@ -56,18 +56,18 @@ else:
     print(medio)
     print(len(l))
     
-
-    aux = 0
-    for i in range(len(l)):
-        if not aux:
-            if l[i] > busqueda:
-                aux = l[i]
-                l[i] = busqueda
-        else:
-            l[i],aux = aux,l[i]
-    if aux:
-        l.append(aux)
-    else:
+    if busqueda > l[-1]:
         l.append(busqueda)
+    else:
+        aux = 0
+        for i in range(len(l)):
+            if not aux:
+                if l[i] > busqueda:
+                    aux = l[i]
+                    l[i] = busqueda
+            else:
+                l[i],aux = aux,l[i]
+        l.append(aux)
+
 print(l)
                 
