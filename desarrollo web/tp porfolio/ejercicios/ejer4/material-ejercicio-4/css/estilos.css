@@ -1,0 +1,64 @@
+#ejercicio-1{
+background-color: lightblue;
+margin: 20px;
+padding: 15px;
+}
+#ejercicio-2{
+    background-image: url(../img/fondo.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#ejercicio-3{
+    border-color: red;
+    border-width: 2px;
+    border-radius: 10px; 
+}
+#ejercicio-4{
+    border-width: 2px;
+    padding: 5%;
+    border-color: black;
+}
+#ejercicio-4 p{
+    font-weight: bold;
+}
+#ejercicio-5 div{
+    background-color: yellow;
+    text-align: center;
+}
+#ejercicio-6{
+    background-color: gold;
+    border-width: 5px;
+    border-color: purple;
+    border-style: double;
+    margin: 40px;
+}
+#ejercicio-7{
+    background-image: url(../img/fondo.webp);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+#ejercicio-8{
+    background-image: url(../img/fondo.webp);
+    background-size: 50%;
+    background-repeat: repeat-y;
+}
+#ejercicio-9{
+    background-color: green;
+    background-image: url(../img/gato.webp);
+    background-position: right top;
+    background-size:  auto 100%;
+    background-repeat: no-repeat;
+    height: 300px;
+}
+#ejercicio-9 a {
+    background-color: red;
+    margin: 5px 0;
+}
+#ejercicio-10{
+    width: 50%;
+    border: 3px dotted green;
+    /* border-width: 3px; */
+    /* border-color: green; */
+    /* border-style: dotted; */
+    padding: 25px;
+}

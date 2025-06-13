@@ -1,0 +1,40 @@
+body {
+    background-color: #1A2036;
+}
+.mainDiv{
+    background-image: url(../imagenes/degradado.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 50px 30px;
+}
+#logo{
+    width: 60px;
+    height: auto;
+}
+.headerDiv{
+    display:flex;
+    align-items: center;
+}
+h1 {
+    font-size: 12px;
+}
+header {
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+}
+header p {
+    margin: 0px;
+}
+header nav {
+    justify-self: flex-end;
+}
+header nav a {
+    color: white;
+    font-style: none;
+    text-decoration: none;
+}
+header nav a{
+    padding:5px 5px
+}

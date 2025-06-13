@@ -1,0 +1,47 @@
+h1,h2{
+    color: #0070C0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h3{
+    color: #E36C0A;
+    font-family: Arial, Helvetica, sans-serif;
+}
+p{
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.introduccion{
+    color:red;
+}
+.introduccion span{
+    color: rgb(143, 0, 0);
+}
+.diseñoMultimedial{
+    color: #A1D050;
+}
+.diseñoMultimedial span{
+    color: #76923C;
+}
+.diseñoWeb{
+    color:#D99596;
+}
+.diseñoWeb span{
+    color: #943634;
+}
+.cortos {
+    color: #B2A1C7;
+}
+.cortos span{
+    color: #5F497A;
+}
+.formacionProfesional{
+    color: #FF37CD;
+}
+.formacionProfesional span{
+    color: #CC3399;
+}
+#italic{
+    font-style: italic;
+    color: #B2A1C7;
+}
