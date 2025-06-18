@@ -61,7 +61,7 @@ else:
     else:
         aux = 0
         for i in range(len(l)):
-            if not aux:
+            if aux == 0:
                 if l[i] > busqueda:
                     aux = l[i]
                     l[i] = busqueda
