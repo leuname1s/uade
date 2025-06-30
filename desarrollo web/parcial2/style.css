@@ -1,4 +1,149 @@
-.nav-link {
-    font-family:'Barlow Condensed', sans-serif;
-;
+main {
+  margin-top: 110px; 
+  background-color: #151515;
+  color: #ffffff;
+  font-family: 'Barlow Condensed', sans-serif; 
+}
+body{
+    background-color: #151515;
+}
+
+h5{
+  font-family:'Barlow Condensed', sans-serif;
+  color: #CB761B !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+h2 {
+  font-family:'Barlow Condensed', sans-serif;
+  color: #CB761B !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+h4{
+  color: #fff;
+}
+.naranja{
+  font-family:'Barlow Condensed', sans-serif;
+  color: #d6d6d6 !important; /* color base */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.naranja:hover {
+  color: #CB761B !important; /* color cuando pasa el mouse */
+  transform: scale(1.05);
+}
+.catalogo-section {
+  background-image: url('img/cerbezas.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment:local;
+  position: relative;
+  color: white;
+}
+  @media (max-width: 767.98px) {
+  .catalogo-section {
+    background-attachment: fixed;
+    background-image: url('img/blackboard.jpg');
+  }
+}
+
+.catalogo-section .overlay {
+  background-color: rgba(0, 0, 0, 0.7); /* oscurece la imagen */
+  min-height: 300px; /* opcional: altura mínima */
+}
+.burbuja {
+  width: 60px;
+  height: 60px;
+  border-radius: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.75rem; /* más chico para que entre */
+  padding: 5px;
+  line-height: 1.1;
+}
+.highlight{
+  background-color: #151515 !important; /* color base */
+  transition: color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.highlight.visible {
+    opacity: 1;
+  transform: translateY(0);
+}
+.highlight:hover{
+  background-color: #3f3f3f !important; /* color cuando pasa el mouse */
+  transform: scale(1.05);
+}
+.highlight .burbuja{
+  background-color: #292929;
+    transition: color 0.3s ease, transform 0.3s ease;
+}.highlight:hover .burbuja{
+  background-color: #333333;
+  transform: scale(1.05);
+}
+.bg-img {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/franquisias.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100%;
+}
+.bg-blackboard{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/blackboard.jpg');
+  background-size: cover;
+  background-position: center;
+
+}
+.bg-orange{
+  background-color: #CB761B;
+
+}
+.btn-orange{
+  background-color: #CB761B !important;
+  color: white !important;
+  border: none;
+}
+.btn-orange:hover{
+  background-color: #A85F15 !important;
+}
+@media (min-width: 768px) {
+    .bg-img {
+        height: 80vh;
+        /* Solo la mitad de la pantalla */
+    }
+}
+.image-container {
+  position: relative;
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-body {
+  z-index: 2;
+  background-color: transparent;
+  position: relative;
+}
+.custom-arrow {
+  color: #ff8400 !important; /* tu color personalizado */
+  font-size: 2rem;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
 }
