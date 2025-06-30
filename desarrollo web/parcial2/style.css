@@ -51,6 +51,9 @@ h4{
   background-color: rgba(0, 0, 0, 0.7); /* oscurece la imagen */
   min-height: 300px; /* opcional: altura mínima */
 }
+.margen{
+  margin-top: 110px;
+}
 .burbuja {
   width: 60px;
   height: 60px;
@@ -118,6 +121,39 @@ h4{
         /* Solo la mitad de la pantalla */
     }
 }
+.video-hero {
+  min-height: 30em; /* o 100vh si querés pantalla completa */
+  position: relative;
+  overflow: hidden;
+  background-color: transparent !important;
+}
+
+.video-hero video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* detrás del contenido */
+}
+
+/* Capa semitransparente opcional */
+.video-hero .overlay {
+  background-color: rgba(0, 0, 0, 0.4); /* oscurece para mejorar contraste */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Sombra de texto opcional */
+.text-shadow {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
 .image-container {
   position: relative;
 }

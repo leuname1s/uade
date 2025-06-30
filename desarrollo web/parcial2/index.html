@@ -26,13 +26,24 @@
             </ul>
         </nav>
     </header>
-    <main>
-      <div class="bg-img d-flex align-items-center justify-content-center text-center" style="min-height: 30em;">
-        <div class="col-12">
-          <h1 class="display-2 text-white fw-bold mb-3 text-shadow">Vértice</h1>
-          <p class="text-white fs-4 fw-bold">desde 1975</p>
-        </div>
-      </div><section class="container py-5">
+    <div class="video-hero bg-transparent position-relative d-flex align-items-center justify-content-center text-center margen" style="min-height: 30em;">
+      
+      <!-- Video de fondo -->
+      <video autoplay muted loop playsinline class="position-absolute w-100 h-100 object-fit-cover z-n1">
+        <source src="img/patagonia.mp4" type="video/mp4">
+        Tu navegador no soporta video en HTML5.
+      </video>
+      
+      <!-- Contenido encima del video -->
+      <div class="col-12">
+        <h1 class="display-2 text-white fw-bold mb-3 text-shadow">Vértice</h1>
+        <p class="text-white fs-4 fw-bold">desde 1975</p>
+      </div>
+    </div>
+    
+    <main class="m-0">
+  </div>
+  <section class="container py-5 w-100 " style="background-color: #151515;">
   <h2 class="display-5">Nuestras Sucursales</h2>
     <p class="fs-5">Tenemos sucurales por todo Buenos Aires y la Patagonia Argentina. Visitanos donde te quede más cerca!</p>
     <div class="swiper mySwiper">
