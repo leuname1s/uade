@@ -14,9 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
-<body>
-    <header class="bg-dark text-light py-3 fixed-top">
-        <nav class="container">
+<body class="bg-dark">
+    <header class="text-light bg-dark py-3 fixed-top">
+        <nav class="container d-none d-sm-block">
             <ul class="nav align-items-center justify-content-between">
               <li class="col nav-item "><a href="sucursales.html" class="nav-link naranja text-center fs-3">Sucursales</a></li>
               <li class="col nav-item "><a href="catalogo.html" class="nav-link naranja text-center fs-3">Catalogo</a></li>
@@ -24,6 +24,42 @@
               <li class="col nav-item "><a href="franquicias.html" class="nav-link naranja text-center fs-3">Franquicias</a></li>
               <li class="col nav-item "><a href="contacto.html" class="nav-link naranja text-center fs-3">Contacto</a></li>
             </ul>
+        </nav>
+        <nav class="navbar navbar-dark bg-dark d-block d-sm-none">
+            <div class="container-fluid">
+                <img src="img/logo_sin_texto.png" alt="logo" class="w-25">
+                <button class="navbar-toggler  d-block d-sm-none boton-inicio" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-1 boton-inicio"></i> <!-- Ícono de menú -->
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header bg-dark justify-content-between">
+                        <h5 class="offcanvas-title fs-4" id="offcanvasNavbarLabel">Enlaces</h5>
+                        <button type="button" class="btn" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <i class="bi bi-x fs-1 boton-inicio"></i> <!-- Ícono de menú -->
+                        </button>
+                    </div>
+                    <div class="offcanvas-body bg-dark">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="sucursales.html">Sucursales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="catalogo.html">Catalogo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="franquicias.html">Franquicias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contacto.html">Contacto</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 <main>

@@ -1,21 +1,38 @@
+@font-face {
+  font-family: 'asfalto';
+  src: url('font/Fernando\ Forero\ -\ Asfalto.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 main {
   margin-top: 110px; 
   background-color: #151515;
   color: #ffffff;
-  font-family: 'Barlow Condensed', sans-serif; 
+  font-family: 'asfalto', sans-serif; 
 }
 body{
-    background-color: #151515;
+  background-color: #151515;
 }
-
+.titulo-principal {
+  font-size: 10rem; /* desktop base */
+}
+.subtitulo{
+  font-family: 'asfalto', sans-serif; 
+  
+}
+@media (max-width: 576px) {
+  .titulo-principal {
+    font-size: 3.5rem;
+  }
+}
 h5{
-  font-family:'Barlow Condensed', sans-serif;
+  font-family:'asfalto', sans-serif;
   color: #CB761B !important;
   text-transform: uppercase;
   font-weight: bold;
 }
-h2 {
-  font-family:'Barlow Condensed', sans-serif;
+h2,h1{
+  font-family:'asfalto', sans-serif;
   color: #CB761B !important;
   text-transform: uppercase;
   font-weight: bold;
@@ -24,7 +41,7 @@ h4{
   color: #fff;
 }
 .naranja{
-  font-family:'Barlow Condensed', sans-serif;
+  font-family:'asfalto', sans-serif;
   color: #d6d6d6 !important; /* color base */
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -137,7 +154,23 @@ h4{
   left: 0;
   z-index: -1; /* detrás del contenido */
 }
-
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('img/patagonia.jpg'); /* Fallback */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  overflow: hidden;
+}
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 /* Capa semitransparente opcional */
 .video-hero .overlay {
   background-color: rgba(0, 0, 0, 0.4); /* oscurece para mejorar contraste */
@@ -182,4 +215,18 @@ h4{
 .swiper-button-next::after,
 .swiper-button-prev::after {
   display: none;
+}
+.boton-inicio {
+  z-index: 1; /* Mayor que el offcanvas (Bootstrap usa 1050 por defecto) */
+  position: relative;
+  color: #ff8400 !important; /* tu color personalizado */
+
+}
+.navbar-toggler {
+  border: none; /* opcional: quitás el borde */
+  background-color: transparent;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='orange' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
