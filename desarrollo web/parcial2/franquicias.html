@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verice</title>
+    <title>Vertice: Emanuel Strah, Federico Roger, Agustin Bonicalzi, Turno tarde, primer año</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
@@ -17,9 +17,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
-<body>
-    <header class="bg-dark text-light py-3 fixed-top">
-        <nav class="container">
+<body class="bg-dark">
+    <header class="text-light bg-dark py-3 fixed-top">
+        <nav class="container d-none d-sm-block">
             <ul class="nav align-items-center justify-content-between">
               <li class="col nav-item "><a href="sucursales.html" class="nav-link naranja text-center fs-3">Sucursales</a></li>
               <li class="col nav-item "><a href="catalogo.html" class="nav-link naranja text-center fs-3">Catalogo</a></li>
@@ -28,14 +28,50 @@
               <li class="col nav-item "><a href="contacto.html" class="nav-link naranja text-center fs-3">Contacto</a></li>
             </ul>
         </nav>
+        <nav class="navbar navbar-dark bg-dark d-block d-sm-none">
+            <div class="container-fluid">
+                <img src="img/logo_sin_texto.png" alt="logo" class="w-25">
+                <button class="navbar-toggler  d-block d-sm-none boton-inicio" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-1 boton-inicio"></i> <!-- Ícono de menú -->
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header bg-dark justify-content-between">
+                        <h5 class="offcanvas-title fs-4" id="offcanvasNavbarLabel">Enlaces</h5>
+                        <button type="button" class="btn" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <i class="bi bi-x fs-1 boton-inicio"></i> <!-- Ícono de menú -->
+                        </button>
+                    </div>
+                    <div class="offcanvas-body bg-dark">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="sucursales.html">Sucursales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="catalogo.html">Catalogo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="franquicias.html">Franquicias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contacto.html">Contacto</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!--Background Imagen -->
     <main class="pb-4">
         <div class="bg-img d-flex align-items-center justify-content-center text-center" style="min-height: 30em;">
             <div class="col-12">
-                <h1 class="display-2 text-white fw-bold mb-3 text-shadow">Franquicias Vértice</h1>
-                <p class="text-white">Únete a nuestra familia empresarial y construye tu futuro</p>
+                <h1 class="display-2 text-white mb-3 text-shadow">Franquicias Vértice</h1>
+                <p class="text-white sans fs-4">Únete a nuestra familia empresarial y construye tu futuro</p>
                 <a href="#formulario" class="btn btn-light btn-lg rounded-pill px-5 py-3 shadow"><i class="bi bi-arrow-down-circle me-2"></i>Comenzar Ahora</a>
             </div>
         </div>
@@ -55,7 +91,7 @@
                     <!-- Titulo -->
                     <div class="text-center mb-4">
                         <h2 class="">Beneficios de Nuestra Franquicia</h2>
-                        <p class="text-light">Descubre las ventajas de formar parte de nuestra red</p>
+                        <p class="text-light sans fs-5">Descubre las ventajas de formar parte de nuestra red</p>
                         <hr class="w-25 m-auto">
                     </div>
                     <!-- Lista de Beneficios -->
@@ -68,18 +104,18 @@
                                 <div class="col-md-6">
                                     <ul>
                                         <li>
-                                            <h5 class="fw-bold ">Marca Reconocida</h5>
-                                            <p class="text-light">Respaldo de una marca consolidada con años de experiencia
+                                            <h5 class=" ">Marca Reconocida</h5>
+                                            <p class="text-light sans">Respaldo de una marca consolidada con años de experiencia
                                                 en el mercado gastronómico.</p>
                                         </li>
                                         <li>
-                                            <h5 class="fw-bold ">Capacitación Integral</h5>
-                                            <p class="text-light">Programa completo de entrenamiento para ti y tu equipo,
+                                            <h5 class=" ">Capacitación Integral</h5>
+                                            <p class="text-light sans">Programa completo de entrenamiento para ti y tu equipo,
                                                 desde operaciones hasta marketing.</p>
                                         </li>
                                         <li>
-                                            <h5 class="fw-bold ">Soporte Continuo</h5>
-                                            <p class="text-light">Acompañamiento permanente en marketing, operaciones y
+                                            <h5 class=" ">Soporte Continuo</h5>
+                                            <p class="text-light sans">Acompañamiento permanente en marketing, operaciones y
                                                 desarrollo de negocio.</p>
                                         </li>
                                     </ul>
@@ -87,18 +123,18 @@
                                 <div class="col-md-6">
                                     <ul>
                                         <li>
-                                            <h5 class="fw-bold ">Territorio Exclusivo</h5>
-                                            <p class="text-light">Protección de zona geográfica para garantizar tu éxito sin
+                                            <h5 class=" ">Territorio Exclusivo</h5>
+                                            <p class="text-light sans">Protección de zona geográfica para garantizar tu éxito sin
                                                 competencia interna.</p>
                                         </li>
                                         <li>
-                                            <h5 class="fw-bold ">Red de Franquiciados</h5>
-                                            <p class="text-light">Acceso a una comunidad de empresarios exitosos para
+                                            <h5 class=" ">Red de Franquiciados</h5>
+                                            <p class="text-light sans">Acceso a una comunidad de empresarios exitosos para
                                                 compartir experiencias y mejores prácticas.</p>
                                         </li>
                                         <li>
-                                            <h5 class="fw-bold ">Rentabilidad Comprobada</h5>
-                                            <p class="text-light">Modelo de negocio probado con retorno de inversión
+                                            <h5 class=" ">Rentabilidad Comprobada</h5>
+                                            <p class="text-light sans">Modelo de negocio probado con retorno de inversión
                                                 atractivo y crecimiento sostenible.</p>
                                         </li>
                                     </ul>
@@ -115,8 +151,8 @@
                 <div class="col-lg-10">
                     <!-- Titulo -->
                     <div class="text-center mb-5">
-                        <h2 class="">Nuestro Proceso</h2>
-                        <p class="text-light">8 pasos simples para convertirte en franquiciado</p>
+                        <h2 class="display-4">Nuestro Proceso</h2>
+                        <p class="text-light sans fs-4">8 pasos simples para convertirte en franquiciado</p>
                         <hr class="w-25 m-auto">
                     </div>
                     <!-- Items de proceso -->
@@ -132,8 +168,8 @@
                                             style="width: 80px; height: 80px;">
                                             <span class="display-6 fw-bold">1</span>
                                         </div>
-                                        <h5 class="fw-bold ">Compartir Información</h5>
-                                        <p class="text-light small">Nos conocemos y evaluamos tu perfil emprendedor.
+                                        <h5 class="fs-4">Compartir Información</h5>
+                                        <p class="text-light small sans fs-6">Nos conocemos y evaluamos tu perfil emprendedor.
                                             Compartimos información sobre la franquicia.</p>
                                     </div>
                                 </div>
@@ -141,10 +177,10 @@
                                     <div class="text-center h-100">
                                         <div class="bg-orange  rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                             style="width: 80px; height: 80px;">
-                                            <span class="display-6 fw-bold">2</span>
+                                            <span class="display-6 ">2</span>
                                         </div>
-                                        <h5 class="fw-bold ">Evaluación Económica</h5>
-                                        <p class="text-light small">Analizamos tu capacidad de inversión y te presentamos
+                                        <h5 class="fs-4">Evaluación Económica</h5>
+                                        <p class="text-light small sans fs-6">Analizamos tu capacidad de inversión y te presentamos
                                             las opciones financieras disponibles.</p>
                                     </div>
                                 </div>
@@ -152,10 +188,10 @@
                                     <div class="text-center h-100">
                                         <div class="bg-orange  rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                             style="width: 80px; height: 80px;">
-                                            <span class="display-6 fw-bold">3</span>
+                                            <span class="display-6 ">3</span>
                                         </div>
-                                        <h5 class="fw-bold ">Estudio de Mercado</h5>
-                                        <p class="text-light small">Realizamos un análisis detallado de la zona seleccionada
+                                        <h5 class="fs-4">Estudio de Mercado</h5>
+                                        <p class="text-light small sans fs-6">Realizamos un análisis detallado de la zona seleccionada
                                             y su potencial comercial.</p>
                                     </div>
                                 </div>
@@ -163,10 +199,10 @@
                                     <div class="text-center h-100">
                                         <div class="bg-orange  rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                             style="width: 80px; height: 80px;">
-                                            <span class="display-6 fw-bold">4</span>
+                                            <span class="display-6 ">4</span>
                                         </div>
-                                        <h5 class="fw-bold ">Planteamiento del Proyecto</h5>
-                                        <p class="text-light small">Desarrollamos juntos el plan de negocio específico para
+                                        <h5 class="fs-4">Planteamiento del Proyecto</h5>
+                                        <p class="text-light small sans fs-6">Desarrollamos juntos el plan de negocio específico para
                                             tu ubicación y circunstancias.</p>
                                     </div>
                                 </div>
@@ -174,10 +210,10 @@
                                     <div class="text-center h-100">
                                         <div class="bg-orange  rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                             style="width: 80px; height: 80px;">
-                                            <span class="display-6 fw-bold">5</span>
+                                            <span class="display-6 ">5</span>
                                         </div>
-                                        <h5 class="fw-bold ">Firma del Contrato</h5>
-                                        <p class="text-light small">Formalizamos nuestra alianza comercial con todos los
+                                        <h5 class="fs-4">Firma del Contrato</h5>
+                                        <p class="text-light small sans fs-6">Formalizamos nuestra alianza comercial con todos los
                                             términos y condiciones acordados.</p>
                                     </div>
                                 </div>
@@ -185,10 +221,10 @@
                                     <div class="text-center h-100">
                                         <div class="bg-orange  rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                             style="width: 80px; height: 80px;">
-                                            <span class="display-6 fw-bold">6</span>
+                                            <span class="display-6 ">6</span>
                                         </div>
-                                        <h5 class="fw-bold ">Inicio de Obras</h5>
-                                        <p class="text-light small">Comenzamos la construcción y adecuación del local según
+                                        <h5 class="fs-4">Inicio de Obras</h5>
+                                        <p class="text-light small sans fs-6">Comenzamos la construcción y adecuación del local según
                                             nuestros estándares de marca.</p>
                                     </div>
                                 </div>
@@ -196,10 +232,10 @@
                                     <div class="text-center h-100">
                                         <div class="bg-orange  rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                             style="width: 80px; height: 80px;">
-                                            <span class="display-6 fw-bold">7</span>
+                                            <span class="display-6 ">7</span>
                                         </div>
-                                        <h5 class="fw-bold ">Educación del Personal</h5>
-                                        <p class="text-light small">Capacitamos a ti y tu equipo en todos los procesos
+                                        <h5 class="fs-4">Educación del Personal</h5>
+                                        <p class="text-light small sans fs-6">Capacitamos a ti y tu equipo en todos los procesos
                                             operativos y de atención al cliente.</p>
                                     </div>
                                 </div>
@@ -207,10 +243,10 @@
                                     <div class="text-center h-100">
                                         <div class="bg-orange  rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                             style="width: 80px; height: 80px;">
-                                            <span class="display-6 fw-bold">8</span>
+                                            <span class="display-6 ">8</span>
                                         </div>
-                                        <h5 class="fw-bold ">Apertura Oficial</h5>
-                                        <p class="text-light small">¡Celebramos juntos la inauguración de tu nuevo negocio y
+                                        <h5 class="fs-4">Apertura Oficial</h5>
+                                        <p class="text-light small sans fs-6">¡Celebramos juntos la inauguración de tu nuevo negocio y
                                             el inicio de tu éxito empresarial!</p>
                                     </div>
                                 </div>
@@ -218,7 +254,7 @@
                             <!-- Listo? -->
                             <div class="text-center mt-5 pt-4 border-top">
                                 <h5 class="">¿Listo para comenzar tu camino empresarial?</h5>
-                                <p class="text-light mb-4">Completa el formulario de contacto y te acompañaremos en cada
+                                <p class="text-light mb-4 sans">Completa el formulario de contacto y te acompañaremos en cada
                                     paso del proceso.</p>
                             </div>
                         </div>
@@ -233,7 +269,7 @@
                     <!-- Titulo -->
                     <div class="text-center mb-5">
                         <h2 class="">¿Comenzamos el proceso?</h2>
-                        <p class="text-light">Completa el formulario y un asesor se pondrá en contacto contigo.</p>
+                        <p class="text-light sans">Completa el formulario y un asesor se pondrá en contacto contigo.</p>
                         <hr class="w-25 m-auto">
                     </div>
                     <!-- items Formulario -->
@@ -342,7 +378,7 @@
                                             placeholder="Cuéntanos sobre tu interés en nuestra marca..."
                                             required></textarea>
                                         <div class="form-text">
-                                            <p class="text-light">Mínimo 10 caracteres</p>
+                                            <p class="text-light sans">Mínimo 10 caracteres</p>
                                         </div>
                                     </div>
                                     <!-- Checkbox de privacidad -->
@@ -379,48 +415,42 @@
         </div>
     </main>
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4">
-        <div class="container">
-            <div class="row text-center text-md-start align-items-center">
+<footer class="bg-dark text-light py-4">
+  <div class="container">
+    <div class="row text-center text-md-start align-items-center">
 
-                <!-- Columna 1: Logo -->
-                <div
-                    class="col-md-4 mb-4 mb-md-0 d-none d-md-block d-flex justify-content-center justify-content-md-start align-items-center">
-                    <img src="img/logo_completo_letras_blancas.png" alt="logo" class="w-50">
-                </div>
+      <!-- Columna 1: Logo -->
+      <div class="col-md-4 mb-4 mb-md-0 d-none d-md-block d-flex justify-content-center justify-content-md-start align-items-center">
+        <img src="img/logo_completo_letras_blancas.png" alt="logo" class="w-50">
+      </div>
 
-                <!-- Columna 2: Redes sociales -->
-                <div class="col-md-4 mb-4 mb-md-0 text-center text-md-start">
-                    <h5 class="mb-3">Redes Sociales</h5>
-                    <a href="https://www.facebook.com"
-                        class="text-light d-flex justify-content-center justify-content-md-start align-items-center mb-2 text-decoration-none naranja"
-                        target="_blank">
-                        <i class="bi bi-facebook fs-4 me-2"></i> Facebook: VerticeCerbeceria
-                    </a>
-                    <a href="https://www.instagram.com"
-                        class="text-light d-flex justify-content-center justify-content-md-start align-items-center mb-2 text-decoration-none naranja"
-                        target="_blank">
-                        <i class="bi bi-instagram fs-4 me-2 "></i> Instagram: VerticeOK
-                    </a>
-                    <a href="https://www.twitter.com"
-                        class="text-light d-flex justify-content-center justify-content-md-start align-items-center mb-2 text-decoration-none naranja"
-                        target="_blank">
-                        <i class="bi bi-twitter fs-4 me-2 "></i> Twitter: Vertice_Oficial
-                    </a>
-                </div>
+      <!-- Columna 2: Redes sociales -->
+      <div class="col-md-4 mb-4 mb-md-0 text-center text-md-start">
+        <h5 class="mb-3">Redes Sociales</h5>
+        <a href="https://www.facebook.com" class="text-light d-flex justify-content-center justify-content-md-start align-items-center mb-2 text-decoration-none naranja" target="_blank">
+          <i class="bi bi-facebook fs-4 me-2"></i> <p class="sans fs-4"> Facebook: VerticeCerbeceria</p>
+        </a>
+        <a href="https://www.instagram.com" class="text-light d-flex justify-content-center justify-content-md-start align-items-center mb-2 text-decoration-none naranja" target="_blank">
+          <i class="bi bi-instagram fs-4 me-2 "></i> <p class="sans fs-4"> Instagram: VerticeOK</p>
+        </a>
+        <a href="https://www.twitter.com" class="text-light d-flex justify-content-center justify-content-md-start align-items-center mb-2 text-decoration-none naranja" target="_blank">
+          <i class="bi bi-twitter fs-4 me-2 "></i> <p class="sans fs-4"> Twitter: Vertice_Oficial</p>
+        </a>
+      </div>
 
-                <!-- Columna 3: Contacto y legal -->
-                <div class="col-md-4">
-                    <h5 class="mb-3">Contacto</h5>
-                    <p class="mb-1">Email: contacto@vertice.com</p>
-                    <p class="mb-1">Tel: +54 11 1234 5678</p>
-                    <p class="small mt-3">© 2025 Vértice. Todos los derechos reservados.</p>
-                    <a href="img/politica_privacidad_vertice.pdf" target="_blank" class="text-light text-decoration-underline small">Política de privacidad</a>
-                </div>
+      <!-- Columna 3: Contacto y legal -->
+      <div class="col-md-4">
+         <h5 class="mb-3">Contacto</h5>
+         <p class="mb-1 sans fs-5">Email: contacto@vertice.com</p>
+         <p class="mb-1 sans fs-5">Tel: +54 11 1234 5678</p>
+         <p class="small mt-3 sans fs-5">© 2025 Vértice. Todos los derechos reservados.</p>
+         <a href="img/politica_privacidad_vertice.pdf" target="_blank"
+            class="text-light text-decoration-underline small">Política de privacidad</a>
+      </div>
 
-            </div>
-        </div>
-    </footer>
+    </div>
+  </div>
+</footer>
 </body>
 
 </html>
