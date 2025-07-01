@@ -40,13 +40,13 @@ def busqueda_binaria(l,t):
     while p1<p2:
         medio = (p2 + p1) // 2
         if l[medio] == t:
-            p2 = -1
+            return medio
         elif l[medio] < t:
             p1 = medio + 1
         else: 
             p2 = medio - 1 
             
-    return medio
+    return -1
 
 
 print(busqueda_binaria(lista,7))
