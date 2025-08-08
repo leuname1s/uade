@@ -28,7 +28,7 @@ def insercion(l):
 lista = [4,3,4,6,7,8,9,2,3]
 
 # burbuja(lista)
-# seleccion(lista)
+# seleccion(lista)v
 insercion(lista)
 print(lista)
 
