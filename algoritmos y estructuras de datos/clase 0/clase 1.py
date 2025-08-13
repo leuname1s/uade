@@ -126,28 +126,48 @@ if natural(H):
     print("Ceros:", ceros)
 
 # EJERCICIO 11
+def sumatoria(l):
+    s = 0
+    for i in range(0,len(l)):
+        s += l[i]
+    return s
+        
 print("\nEjercicio 11:")
 T = int(input("Ingrese el número T: "))
 if natural(T):
-    pares_sumatoria = sum(i for i in range(2, T + 1, 2))
+    pares_sumatoria = sumatoria([i for i in range(2, T + 1, 2)])
     print("Sumatoria de pares hasta T:", pares_sumatoria)
 
 # EJERCICIO 12
 print("\nEjercicio 12:")
 N = int(input("Ingrese la cantidad de ventas: "))
-ventas = []
+totalVenta = 0
 for i in range(N):
     venta = float(input(f"Ingrese el monto de la venta {i+1}: "))
-    ventas.append(venta)
-print("Venta más alta:", max(ventas))
-print("Venta más baja:", min(ventas))
-print("Promedio de ventas:", sum(ventas) / N)
+    if i == 0:
+        ventaMayor = venta
+        ventaMenor = venta
+    else:
+        if venta < ventaMenor:
+            ventaMenor = venta
+        elif venta > ventaMayor:
+            ventaMayor = venta
+    totalVenta += venta
+    
+print("la venta mayor fue de ",ventaMayor)
+print("la venta menor fue de ",ventaMenor)
+print("el promedio de ventas fue de", totalVenta / N)
+
 
 # EJERCICIO 13
 print("\nEjercicio 13:")
 lista_cargada = [1, 5, 3, 7, 3, 3, 9, 2]
 buscado = int(input("Ingrese el número a buscar: "))
-ocurrencias = lista_cargada.count(buscado)
+ocurrencias = 0
+for i in range(len(lista_cargada)):
+    if lista_cargada[i] == buscado:
+        ocurrencias += 1
+
 print(f"El número {buscado} aparece {ocurrencias} veces.")
 
 # EJERCICIO 14
@@ -171,14 +191,21 @@ else:
     print("Las listas tienen diferente longitud, no se puede combinar.")
 
 # EJERCICIO 16
-print("\nEjercicio 16:")
-lista1 = ["Hola", "nombre", "Juan"]
-lista2 = ["mi", "es", "Perez", "extra"]
+print("\nEjercicio 15:")
+lista1 = ["Hola", "nombre", "Juan","y me gusta el chocolate"]
+lista2 = ["mi", "es", "Perez"]
 combinada = []
-min_len = min(len(lista1), len(lista2))
-for i in range(min_len):
-    combinada.append(lista1[i])
-    combinada.append(lista2[i])
-combinada += lista1[min_len:]
-combinada += lista2[min_len:]
-print("Lista combinada con extras:", combinada)
+if len(lista1) > len(lista2):
+    for i in range(len(lista2)):
+        combinada.append(lista1[i])
+        combinada.append(lista2[i])
+    for i in range(len(lista2),len(lista1)):
+        combinada.append(lista1[i])
+else:
+    for i in range(len(lista1)):
+        combinada.append(lista1[i])
+        combinada.append(lista2[i])
+    for i in range(len(lista1),len(lista2)):
+        combinada.append(lista2[i])
+
+print("Lista combinada:", combinada)
