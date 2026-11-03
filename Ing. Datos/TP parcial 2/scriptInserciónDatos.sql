@@ -21,7 +21,6 @@ albumes,
 generos,
 artistas
 RESTART IDENTITY CASCADE;
-
 -- =============================================================================
 -- 1. MÚSICA (Ejercicios 1 y 2)
 -- =============================================================================
@@ -61,7 +60,7 @@ INSERT INTO temas (titulo, orden, duracion, codAlbum) VALUES
 ('Trouble', 6, 270, 1);
 
 -- =============================================================================
--- 2. NOTICIAS Y VOTACIONES (Ejercicios 3, 4 y 8)
+-- 2. NOTICIAS Y VOTACIONES (Ejercicios 3, 4, 7, 8 y 10)
 -- =============================================================================
 
 INSERT INTO usuarios (nombre, alias, contrasena, activo, email) VALUES
@@ -79,10 +78,17 @@ INSERT INTO noticias (titulo, idCategoria, idAutor, fecha, ubicacion) VALUES
 ('Final de la Copa Mundial', 2, 1, '2024-01-20 18:00:00', '/noticias/dep/copa.txt'),
 ('Lanzamiento del procesador Quantum X', 1, 3, CURRENT_TIMESTAMP - INTERVAL '1 day', '/noticias/quantum.txt');
 
+-- Votaciones para Noticias de Tecnología
 INSERT INTO votaciones (idNoticia, fechaInicio, fechaFin, pregunta, respuesta1, respuesta2, respuesta3, votosOp1, votosOp2, votosOp3) VALUES
-(1, CURRENT_TIMESTAMP - INTERVAL '2 days', CURRENT_TIMESTAMP + INTERVAL '10 days', '¿Qué opinas de la nueva versión?', 'Excelente', 'Buena', 'Regular', 9, 5, 1),
-(4, CURRENT_TIMESTAMP - INTERVAL '1 day', CURRENT_TIMESTAMP + INTERVAL '5 days', '¿Comprarías el nuevo procesador Quantum X?', 'Sí, inmediatamente', 'Tal vez en el futuro', 'No me interesa', 15, 10, 5),
+(1, CURRENT_TIMESTAMP - INTERVAL '2 days', CURRENT_TIMESTAMP + INTERVAL '10 days', '¿Qué opinas de la nueva versión?', 'Excelente', 'Buena', 'Regular', 50, 70, 30),
+(2, '2024-03-15 14:30:00', '2024-03-25 23:59:59', '¿Usas IA a diario?', 'Sí', 'A veces', 'No', 100, 120, 80),
 (3, '2024-01-20 00:00:00', '2024-01-30 23:59:59', '¿Quién gana?', 'Equipo A', 'Equipo B', 'Empate', 200, 200, 100);
+
+-- Comentarios de prueba para Noticias de Tecnología
+INSERT INTO comentarios (idNoticia, texto, idUsuario, fecha) VALUES
+(1, 'Excelente versión, trae muchas mejoras de rendimiento en consultas concurrentes.', 1, CURRENT_TIMESTAMP - INTERVAL '1 day'),
+(1, 'Muy esperadas las nuevas funciones de indexación lógica.', 2, CURRENT_TIMESTAMP - INTERVAL '12 hours'),
+(2, 'La inteligencia artificial generativa está revolucionando el desarrollo de software.', 3, CURRENT_TIMESTAMP - INTERVAL '5 hours');
 
 -- =============================================================================
 -- 3. CATEGORÍA ECONOMÍA Y COMENTARIOS (Ejercicio 5)
@@ -132,7 +138,6 @@ INSERT INTO clientes (codCliente, nombre, saldo) VALUES
 (1, 'Tech Solutions S.A.', 1500.00),
 (2, 'Comercial del Sur', 0.00);
 
--- Pedidos ya facturados anteriormente
 INSERT INTO pedidos (nroPedido, fecha, codCliente, fechaEntrega, lugarEntrega) VALUES
 (1, '2026-02-10', 1, '2026-02-15', 'Av. Corrientes 1234'),
 (2, '2026-02-12', 2, '2026-02-16', 'Calle Belgrano 567');
@@ -146,17 +151,15 @@ INSERT INTO itemsFactura (codProducto, nroFactura, cantidad, precio, descuento) 
 (20, 101, 1, 500.00, 0.00),
 (10, 102, 1, 1000.00, 10.00);
 
--- Pedido sin facturar N° 3 (para prueba exitosa del Ejercicio 9)
 INSERT INTO pedidos (nroPedido, fecha, codCliente, fechaEntrega, lugarEntrega) VALUES
 (3, '2026-03-01', 1, '2026-03-05', 'Av. Corrientes 1234');
 
 INSERT INTO itemsPedido (codProducto, nroPedido, cantidad) VALUES
-(1, 3, 2),  -- 2 x Procesador Intel i7 ($300.00 c/u = $600.00)
-(3, 3, 1);  -- 1 x Memoria RAM 32GB ($150.00 c/u = $150.00)
--- Total Bruto esperado: $750.00
+(1, 3, 2),
+(3, 3, 1);
 
 -- =============================================================================
--- 5. NOTICIAS DUPLICADAS PARA PRUEBAS (Ejercicio 7)
+-- 5. NOTICIAS DUPLICADAS PARA PRUEBAS DE VALIDACIÓN (Ejercicio 7)
 -- =============================================================================
 
 INSERT INTO noticias (titulo, idCategoria, idAutor, fecha, ubicacion) VALUES
