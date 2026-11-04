@@ -190,3 +190,23 @@ INSERT INTO itemsFactura (codProducto, nroFactura, cantidad, precio, descuento) 
 (1, 104, 50, 10.00, 0.00),
 (2, 105, 20, 15.00, 0.00);
 
+INSERT INTO pedidos (nropedido, fecha, codCliente, fechaEntrega, lugarEntrega) VALUES
+(5,'2026-01-10', 1, '2026-01-15', 'Av. Corrientes 1234, CABA'),
+(6,'2026-02-12', 1, '2026-02-18', 'Av. Corrientes 1234, CABA'),
+(7,'2026-03-10', 2, '2026-03-15', 'Calle 50 #432, La Plata'),
+(4,'2026-04-05', 1, '2026-04-10', 'Av. Corrientes 1234, CABA');
+
+-- Facturas distribuidas en varios meses (enero a abril 2026) para probar referencias cruzadas (4 meses = más de un trimestre):
+INSERT INTO facturas (nrofactura, fecha, codCliente, codPedido, bruto, iva, IIBB, final) VALUES
+(107,'2026-02-14', 1, 2, 500.00, 105.00, 15.00, 620.00),
+(108,'2026-03-12', 2, 3, 300.00, 63.00, 9.00, 372.00),
+(109,'2026-04-08', 1, 4, 10500.00, 2205.00, 315.00, 13020.00),
+(110,'2026-01-15', 1, 1, 8200.00, 1722.00, 246.00, 10168.00);
+
+INSERT INTO itemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES
+(7, 1, 2, 3500.00, 0.00),
+(5, 1, 1, 1200.00, 0.00),
+(1, 2, 50, 10.00, 0.00),
+(2, 3, 20, 15.00, 0.00),
+(7, 4, 3, 3500.00, 0.00);
+
