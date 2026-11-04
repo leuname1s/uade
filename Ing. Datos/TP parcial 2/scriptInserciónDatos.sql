@@ -164,4 +164,29 @@ INSERT INTO itemsPedido (codProducto, nroPedido, cantidad) VALUES
 
 INSERT INTO noticias (titulo, idCategoria, idAutor, fecha, ubicacion) VALUES
 ('Noticia Con Titulo Duplicado', 1, 1, '2026-03-01 10:00:00', '/noticias/dup1.txt'),
-('Noticia Con Titulo Duplicado', 2, 2, '2026-03-02 11:00:00', '/noticias/dup2.txt');
+('Noticia Con Titulo Duplicado', 1, 2, '2026-03-02 11:00:00', '/noticias/dup2.txt');
+
+-- =============================================================================
+-- 5. PRUEBAS DE PRIVILEGIOS DE USUARIOS (Ejercicio 11)
+-- ======================================Q=======================================
+
+INSERT INTO privilegios (idUsuario, privilegio, idCategoria) VALUES
+(1, 'Crear Noticia', 1),
+(1, 'Responsable', 2);
+
+-- Facturas para probar trimestres:
+-- Cliente 1 (Empresa Alfa S.A.) tiene facturas en el Trimestre 3 (agosto):
+INSERT INTO facturas (nrofactura, fecha, codCliente, codPedido, bruto, iva, IIBB, final) VALUES
+(103,'2026-08-11', 1, 1, 8200.00, 1722.00, 246.00, 10168.00),
+(104,'2026-08-13', 1, 2, 500.00, 105.00, 15.00, 620.00);
+
+-- Cliente 2 (Juan Carlos López) tiene factura en el Trimestre 1 (febrero):
+INSERT INTO facturas (nrofactura,fecha, codCliente, codPedido, bruto, iva, IIBB, final) VALUES
+(105,'2026-02-12', 2, 3, 300.00, 63.00, 9.00, 372.00);
+
+INSERT INTO itemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES
+(3, 103, 2, 3500.00, 0.00),
+(5, 103, 1, 1200.00, 0.00),
+(1, 104, 50, 10.00, 0.00),
+(2, 105, 20, 15.00, 0.00);
+

@@ -1,13 +1,13 @@
 -- Crear un procedimiento que permita cambiar la categoría de una noticia. Recibe
 -- el título de una noticia y el nombre de una categoría y realice las siguientes
 -- acciones.
-	--  Verificar que la noticia y la categoría existen. Si no es así enviar un mensaje
-	-- y finalizar el procedimiento.
-	--  Verificar que la noticia pertenezca a una categoría distinta de la ingresada.
-	-- Caso contrario enviar un mensaje y finalizar el procedimiento.
-	--  Verificar que se modificara solo una noticia (es decir que no hay más de una
-	-- noticia con ese título), caso contrario emitir un mensaje de error y finalizar el
-	-- procedimiento.
+--  Verificar que la noticia y la categoría existen. Si no es así enviar un mensaje
+-- y finalizar el procedimiento.
+--  Verificar que la noticia pertenezca a una categoría distinta de la ingresada.
+-- Caso contrario enviar un mensaje y finalizar el procedimiento.
+--  Verificar que se modificara solo una noticia (es decir que no hay más de una
+-- noticia con ese título), caso contrario emitir un mensaje de error y finalizar el
+-- procedimiento.
 
 CREATE OR REPLACE PROCEDURE sp_cambiar_categoria_noticia(
 p_titulo_noticia VARCHAR,
@@ -16,17 +16,7 @@ p_nombre_categoria VARCHAR
 LANGUAGE plpgsql
 AS $$ DECLARE v_id_categoria_nueva INT; v_cant_noticias INT; v_id_noticia INT; v_id_categoria_actual INT; 
 BEGIN 
--- Validar parámetros de entrada  
-IF p_titulo_noticia IS NULL OR TRIM(p_titulo_noticia) = '' THEN 
-	RAISE NOTICE 'El título de la noticia no puede ser nulo o vacío.'; 
-	RETURN; 
-END IF;
-IF p_nombre_categoria IS NULL OR TRIM(p_nombre_categoria) = '' THEN
-	RAISE NOTICE 'El nombre de la categoría no puede ser nulo o vacío.'; 
-	RETURN;
-END IF;
-
--- 1. Verificar si la categoría destino existe 
+--  Verificar si la categoría destino existe 
 SELECT idCategoria INTO v_id_categoria_nueva FROM categorias WHERE LOWER(nombre) = LOWER(p_nombre_categoria);
 
 IF v_id_categoria_nueva IS NULL THEN
@@ -45,9 +35,9 @@ ELSIF v_cant_noticias > 1 THEN
 	RETURN; 
 END IF;
 
---  2. Verificar que la noticia pertenezca a una categoría distinta 
-IF v_id_categoria_actual = v_id_categoria_nueva THEN 
-	RAISE NOTICE 'La noticia "%" ya pertenece a la categoría "%". Sin cambios realizados.', p_titulo_noticia, p_nombre_categoria; 
+-- Verificar que la noticia pertenezca a una categoría distinta a la ingresada
+IF v_id_categoria_actual = v_id_categoria_nueva THEN
+	RAISE NOTICE 'La noticia "%" ya pertenece a la categoría "%".', p_titulo_noticia, p_nombre_categoria;
 	RETURN;
 END IF;
 
@@ -61,7 +51,7 @@ END; $$;
 -- =============================================================================
 
 -- Caso 1: Cambio exitoso (Noticia 'Lanzamiento de PostgreSQL 17' pasa de Tecnología a Deportes)
- CALL sp_cambiar_categoria_noticia('Lanzamiento de PostgreSQL 17', 'Deportes');
+-- CALL sp_cambiar_categoria_noticia('Lanzamiento de PostgreSQL 17', 'Deportes');
 
 -- Caso 2: Error - Categoría inexistente
 -- CALL sp_cambiar_categoria_noticia('Lanzamiento de PostgreSQL 17', 'Musica');
@@ -73,4 +63,4 @@ END; $$;
 -- CALL sp_cambiar_categoria_noticia('Lanzamiento de PostgreSQL 17', 'Tecnología');
 
 -- Caso 5: Error - Múltiples noticias con el mismo título
--- CALL sp_cambiar_categoria_noticia('Noticia Con Titulo Duplicado', 'Deportes');
+-- CALL sp_cambiar_categoria_noticia('Noticia Con Titulo Duplicado', 'Tecnología');
