@@ -30,38 +30,32 @@ DECLARE
 BEGIN
 	p_cant_registros := 0;
     p_importe_total := 0.00;
-    -- Verificar que el nombre ingresado corresponda a un cliente existente
+    -- Ver si el cliente existe
     SELECT codCliente INTO v_cod_cliente
     FROM clientes
     WHERE LOWER(nombre) = LOWER(p_nombre_cliente);
 
     IF v_cod_cliente IS NULL THEN
-        RAISE NOTICE 'Error: El cliente "%" no existe.', p_nombre_cliente;
-        RETURN;
+        RAISE EXCEPTION 'El cliente "%" no existe.', p_nombre_cliente;
     END IF;
 
-    -- Verificar que el trimestre sea un entero válido (1 a 4)
+    -- Verificar el trimestre
     IF p_trimestre IS NULL OR p_trimestre < 1 OR p_trimestre > 4 THEN
-        RAISE NOTICE 'Error: El número de trimestre % no es válido. Debe ser un entero entre 1 y 4.', p_trimestre;
-        RETURN;
+        RAISE EXCEPTION 'El número de trimestre % no es válido. Tiene que ser un entero entre 1 y 4', p_trimestre;
     END IF;
 
-    -- Verificar que el cliente tenga facturación en ese trimestre
     SELECT COUNT(*), COALESCE(SUM(f.final), 0)
     INTO p_cant_registros, p_importe_total
     FROM facturas f
-    WHERE f.codCliente = v_cod_cliente
-      AND EXTRACT(QUARTER FROM f.fecha) = p_trimestre;
+    WHERE f.codCliente = v_cod_cliente AND EXTRACT(QUARTER FROM f.fecha) = p_trimestre;
 
     IF p_cant_registros = 0 THEN
-        RAISE NOTICE 'Error: El cliente "%" (ID %) no registra facturación en el trimestre %.', p_nombre_cliente, v_cod_cliente, p_trimestre;
-        RETURN;
+        RAISE EXCEPTION 'El cliente no tiene facturación en el trimestre %.', p_trimestre;
     END IF;
 
-    -- Definir el nombre de la tabla dinámica: Facturacion_<codCliente>_<trimestre>
     v_nombre_tabla := 'facturacion_' || v_cod_cliente || '_' || p_trimestre;
 
-    -- Si existe la tabla, eliminarla y volverla a crear
+    -- eliminar la tabla si existe
     EXECUTE format('DROP TABLE IF EXISTS %I CASCADE;', v_nombre_tabla);
 
     EXECUTE format('
@@ -79,7 +73,7 @@ BEGIN
             finalNeto NUMERIC(12,2)
         );', v_nombre_tabla);
 
-    -- Insertar la información en la tabla recién creada
+    -- Insertar informacion
     EXECUTE format('
         INSERT INTO %I (
             nroFactura, fechaFactura, nombreCliente, nroPedido, fechaPedido,
@@ -111,11 +105,13 @@ BEGIN
 END;
 $$;
 
-DO $$
-DECLARE
-    v_cant INT;
-    v_total NUMERIC;
-BEGIN
-    CALL sp_facturacion_cliente_trimestre('Tech Solutions S.A.', 3, v_cant, v_total);
-    RAISE NOTICE 'Cant: %, Total: %', v_cant, v_total;
-END $$;
+-- DO $$
+-- DECLARE
+--     v_cant INT;
+--     v_total NUMERIC;
+-- BEGIN
+--     CALL sp_facturacion_cliente_trimestre('Empresa Tenologica del norte', 3, v_cant, v_total);
+--     RAISE NOTICE 'Cant: %, Total: %', v_cant, v_total;
+-- END $$;
+
+-- CALL sp_facturacion_cliente_trimestre('Empresa Tenologica del norte', 3, NULL, NULL);

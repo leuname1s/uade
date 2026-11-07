@@ -35,13 +35,13 @@ INSERT INTO artistas (nombre) VALUES
 INSERT INTO albumes (titulo, fecha, codArtista, codGenero) VALUES
 ('Raro', '2006-05-20', 1, 1),
 ('Porfiado', '2012-04-25', 1, 1),
-('Puertas', '2024-03-10', 1, 1),
 ('Caravana', '2019-10-04', 2, 1),
 ('Oscuro Éxtasis', '2021-11-18', 2, 1),
 ('Un Verano Sin Ti', '2022-05-06', 3, 2),
 ('YHLQMDLG', '2020-02-29', 3, 2),
 ('Brain', '2004-04-27', 4, 3),
-('Voice', '2009-06-15', 4, 3);
+('Voice', '2009-06-15', 4, 3),
+('Puertas', '2024-03-10', 1, 1);
 
 INSERT INTO temas (titulo, orden, duracion, codAlbum) VALUES
 ('Yendo a la casa de Damián', 1, 245, 1),
@@ -90,7 +90,7 @@ INSERT INTO noticias (titulo, idCategoria, idAutor, fecha, ubicacion) VALUES
 INSERT INTO votaciones (idNoticia, fechaInicio, fechaFin, pregunta, respuesta1, respuesta2, respuesta3, votosOp1, votosOp2, votosOp3) VALUES
 (1, CURRENT_TIMESTAMP - INTERVAL '2 days', CURRENT_TIMESTAMP + INTERVAL '10 days', 'Qué opinas de la nueva versión?', 'Excelente', 'Buena', 'Regular', 50, 70, 30),
 (2, '2024-03-15 14:30:00', '2024-03-25 23:59:59', 'Usas IA a diario?', 'Sí', 'A veces', 'No', 100, 120, 80),
-(3, '2024-01-20 00:00:00', '2024-01-30 23:59:59', 'Quién gana?', 'Equipo A', 'Equipo B', 'Empate', 200, 200, 100);
+(3, '2024-01-20 00:00:00', '2024-03-25 23:59:59', 'Quién gana?', 'Equipo A', 'Equipo B', 'Empate', 200, 200, 100);
 
 INSERT INTO comentarios (idNoticia, texto, idUsuario, fecha) VALUES
 (1, 'Excelente versión, trae muchas mejoras de rendimiento en consultas concurrentes.', 1, CURRENT_TIMESTAMP - INTERVAL '1 day'),

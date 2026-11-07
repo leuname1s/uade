@@ -5,19 +5,19 @@
 CREATE OR REPLACE FUNCTION fn_control_inmutabilidad_facturas()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- Bloquear cualquier intento de eliminación física (DELETE)
+    -- bloquear eliminacion
     IF TG_OP = 'DELETE' THEN
-        RAISE EXCEPTION 'Operación no permitida: Las facturas no pueden ser eliminadas del sistema.';
+        RAISE EXCEPTION 'Las facturas no pueden ser eliminadas';
     END IF;
 
-    -- Control sobre modificaciones (UPDATE)
+
     IF TG_OP = 'UPDATE' THEN
-        -- Si la factura ya estaba anulada previo a este intento de UPDATE
+        -- no permitir cambios en facturas anuladas
         IF OLD.anulada THEN
-            RAISE EXCEPTION 'Operación no permitida: La factura N° % ya se encuentra anulada y no admite cambios.', OLD.nroFactura;
+            RAISE EXCEPTION 'La factura N° % ya se encuentra anulada y no admite cambios', OLD.nroFactura;
         END IF;
 
-        -- Validar que no se modifique ningún dato intrínseco de la factura
+        -- Validar que no se modifique nada de la factura (salvo por anulada)
         IF NEW.nroFactura IS DISTINCT FROM OLD.nroFactura OR
            NEW.fecha IS DISTINCT FROM OLD.fecha OR
            NEW.codCliente IS DISTINCT FROM OLD.codCliente OR
@@ -26,17 +26,14 @@ BEGIN
            NEW.iva IS DISTINCT FROM OLD.iva OR
            NEW.iibb IS DISTINCT FROM OLD.iibb OR
            NEW.final IS DISTINCT FROM OLD.final THEN
-            RAISE EXCEPTION 'Operación no permitida: No se pueden modificar los datos de una factura existente. Solo se permite su anulación.';
+            RAISE EXCEPTION 'No se admiten cambios en las facturas. Solo se permite su anulación.';
         END IF;
 
-        -- Permitir el cambio ÚNICAMENTE si se está marcando como anulada
+        -- Permitir solo si se marca como anulada
         IF NEW.anulada IS TRUE AND OLD.anulada IS FALSE THEN
-            -- Se asigna el usuario/operador actual si no viene especificado en la consulta
-            IF NEW.usuarioAnulacion IS NULL THEN
-                NEW.usuarioAnulacion := SESSION_USER;
-            END IF;
+			NEW.usuarioAnulacion := SESSION_USER;
         ELSE
-            RAISE EXCEPTION 'Operación no permitida: Cambio no válido en la factura.';
+            RAISE EXCEPTION 'Cambio no válido en la factura';
         END IF;
     END IF;
 
@@ -50,3 +47,4 @@ CREATE TRIGGER trg_control_inmutabilidad_facturas
 BEFORE UPDATE OR DELETE ON facturas
 FOR EACH ROW
 EXECUTE FUNCTION fn_control_inmutabilidad_facturas();
+

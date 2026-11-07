@@ -9,10 +9,14 @@ p_titulo_noticia VARCHAR,
 p_nombre_categoria VARCHAR
 )
 LANGUAGE plpgsql
-AS $$ DECLARE v_id_categoria_nueva INT; v_cant_noticias INT; v_id_categoria_actual INT; v_filas_afectadas INT; 
+AS $$ DECLARE 
+v_id_categoria_nueva INT;
+v_cant_noticias INT;
+v_id_categoria_actual INT;
+v_filas_afectadas INT; 
 BEGIN 
 
---  Verificar si la categoría destino existe 
+--  Verificar si la categoría existe 
 SELECT idCategoria INTO v_id_categoria_nueva FROM categorias WHERE LOWER(nombre) = LOWER(p_nombre_categoria);
 
 IF v_id_categoria_nueva IS NULL THEN
@@ -20,7 +24,7 @@ IF v_id_categoria_nueva IS NULL THEN
 	RETURN; 
 END IF;
 
--- Verificar que la noticia ingresada exista
+-- Verificar si la noticia ingresada existe
 SELECT COUNT(*), MAX(idCategoria) 
 INTO v_cant_noticias, v_id_categoria_actual 
 FROM noticias
@@ -28,26 +32,26 @@ WHERE LOWER(titulo) = LOWER(p_titulo_noticia);
 
 
 IF v_cant_noticias = 0 THEN
-	RAISE NOTICE 'Error: La noticia con título "%" no existe.', p_titulo_noticia;
+	RAISE NOTICE 'La noticia con título "%" no existe.', p_titulo_noticia;
 	RETURN;
 END IF;
 
--- Verificar que la noticia pertenezca a una categoría distinta a la ingresada
+-- Verificar que la noticia pertenezca a una categoría distinta
 IF v_id_categoria_actual = v_id_categoria_nueva THEN
 	RAISE NOTICE 'La noticia "%" ya pertenece a la categoría "%".', p_titulo_noticia, p_nombre_categoria;
 	RETURN;
 END IF;
 
--- Modificar la categoría y controlar el número de registros afectados
+-- Modificar la categoría
 UPDATE noticias SET idCategoria = v_id_categoria_nueva WHERE LOWER(titulo) = LOWER(p_titulo_noticia);
 
 GET DIAGNOSTICS v_filas_afectadas = ROW_COUNT;
 
 -- Si se modificaron más de un registro, forzar excepción para revertir la transacción
 IF v_filas_afectadas > 1 THEN
-	RAISE EXCEPTION 'Error: Existen % noticias con el título "%". El procedimiento solo puede modificar una única noticia.', v_filas_afectadas, p_titulo_noticia; 
+	RAISE EXCEPTION 'Existen % noticias con el título "%". El procedimiento solo puede modificar una noticia.', v_filas_afectadas, p_titulo_noticia; 
 	
-	 --RAISE NOTICE 'Error: Existen % noticias con el título "%". El procedimiento solo puede modificar una única noticia.', v_filas_afectadas, p_titulo_noticia; 
+	 --RAISE NOTICE 'Existen % noticias con el título "%". El procedimiento solo puede modificar una noticia.', v_filas_afectadas, p_titulo_noticia; 
 	 --ROLLBACK; RETURN;	--  si uso ROLLBACK tengo que ejecutar la llamada (CALL) en otra sesión de transaccion hace que de error
 END IF;
 
@@ -55,21 +59,7 @@ RAISE NOTICE 'Categoría de la noticia "%" modificada con éxito a "%".', p_titu
 END;
 $$;
 
--- =============================================================================
--- EJEMPLOS DE PRUEBA DE EJECUCIÓN (Usando CALL en PostgreSQL)
--- =============================================================================
+--CALL sp_cambiar_categoria_noticia_v2('Lanzamiento de PostgreSQL 17', 'Deportes');
 
--- Caso 1: Cambio exitoso (Noticia 'Lanzamiento de PostgreSQL 17' pasa de Tecnología a Deportes)
--- CALL sp_cambiar_categoria_noticia_v2('Lanzamiento de PostgreSQL 17', 'Deportes');
-
--- Caso 2: Error - Categoría inexistente
--- CALL sp_cambiar_categoria_noticia_v2('Lanzamiento de PostgreSQL 17', 'Musica');
-
--- Caso 3: Error - Noticia inexistente
--- CALL sp_cambiar_categoria_noticia_v2('Noticia Inexistente 123', 'Deportes');
-
--- Caso 4: Error - Misma categoría
--- CALL sp_cambiar_categoria_noticia_v2('Lanzamiento de PostgreSQL 17', 'Tecnología');
-
--- Caso 5: Error - Múltiples noticias con el mismo título
+-- MUltiples noticias con el mismo tItulo
 -- CALL sp_cambiar_categoria_noticia_v2('Noticia Con Titulo Duplicado', 'Deportes');

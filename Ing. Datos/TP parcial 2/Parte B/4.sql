@@ -41,7 +41,7 @@ SELECT idCategoria, nombre INTO v_id_categoria, v_nombre_categoria_real
 	FROM categorias 
 	WHERE LOWER(TRIM(nombre)) = LOWER(TRIM(p_nombre_categoria));
 IF v_id_categoria IS NULL THEN 
-	RAISE EXCEPTION 'Error: La categoría "%" no existe en el sistema.', p_nombre_categoria; 
+	RAISE EXCEPTION 'La categoría "%" no existe', p_nombre_categoria; 
 END IF;
 
 -- Verificar si la categoría tiene noticias asociadas 
@@ -106,27 +106,15 @@ FOR rec_noticia IN SELECT idNoticia, titulo
 	END; $$;
 
 
--- 2. Procedimiento Almacenado PL/pgSQL
+-- Procedimiento para mostrarlo
 CREATE OR REPLACE PROCEDURE sp_listado_noticias_categoria(p_nombre_categoria VARCHAR)
 LANGUAGE plpgsql
 AS $$ DECLARE rec RECORD; 
 BEGIN 
-FOR rec IN SELECT linea 
-	FROM fn_listado_noticias_categoria(p_nombre_categoria) 
-	LOOP
-		RAISE NOTICE '%', rec.linea; 
-	END LOOP;
+FOR rec IN SELECT linea FROM fn_listado_noticias_categoria(p_nombre_categoria) 
+LOOP
+	RAISE NOTICE '%', rec.linea; 
+END LOOP;
 END; $$;
 
--- =============================================================================
--- EJEMPLOS DE EJECUCIÓN Y PRUEBA EN POSTGRESQL
--- =============================================================================
-
--- Opción 1: Consulta tabular en rejilla de resultados
--- SELECT * FROM fn_listado_noticias_categoria('Tecnología');
-
--- Opción 2: Invocación de procedimiento almacenado por consola
 -- CALL sp_listado_noticias_categoria('Tecnología');
-
--- Opción 3: Prueba de error por categoría inexistente
--- CALL sp_listado_noticias_categoria('Categoría Inexistente');

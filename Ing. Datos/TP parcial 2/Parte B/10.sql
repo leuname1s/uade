@@ -19,7 +19,7 @@ DECLARE
     v_total_cantidad INT;
     v_total_precio NUMERIC(12,2);
 BEGIN
-    -- Imprimir encabezado de columnas
+    -- encabezado de columnas
     RAISE NOTICE '% % % %', 
         RPAD('Producto', 25), 
         RPAD('Componente', 25), 
@@ -27,7 +27,7 @@ BEGIN
         LPAD('precio', 12);
 	RAISE NOTICE '--------------------------------------------------------------------------------------------------------------';
 
-    -- Recorrer todos los productos que poseen composición (productos compuestos/padres)
+    -- Bucle para productos compuestos
     FOR v_padre IN (
         SELECT DISTINCT p.codProducto, p.descripcion
         FROM productos p
@@ -38,7 +38,7 @@ BEGIN
         v_total_cantidad := 0;
         v_total_precio := 0.00;
 
-        -- Recorrer los componentes que forman el producto padre actual
+        -- bucle componentes del producto actual
         FOR v_comp IN (
             SELECT 
                 pc.descripcion AS desc_componente,
@@ -53,7 +53,8 @@ BEGIN
             v_total_cantidad := v_total_cantidad + v_comp.cantidad;
             v_total_precio := v_total_precio + (v_comp.cantidad * v_comp.precio_componente);
 
-            -- En el primer componente mostramos el nombre del producto padre; en los siguientes dejamos el espacio en blanco
+            -- Si es el primer componente mostramos el nombre del producto padre
+			-- en los siguientes dejamos el espacio en blanco
             IF v_es_primer_comp THEN
                 RAISE NOTICE '% % % %', 
                     RPAD(v_padre.descripcion, 25),
@@ -70,7 +71,7 @@ BEGIN
             END IF;
         END LOOP;
 
-        -- Imprimir la línea del total acumulado del producto padre
+        -- linea de totales del producto
         RAISE NOTICE 'Total del producto % % %', 
             RPAD(v_padre.descripcion,32),
             LPAD(v_total_cantidad::TEXT, 10),
@@ -81,4 +82,4 @@ BEGIN
 END;
 $$;
 
-CALL sp_listado_composicion_productos();
+-- CALL sp_listado_composicion_productos();

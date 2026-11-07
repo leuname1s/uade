@@ -10,23 +10,25 @@ RETURNS TRIGGER AS $$
 DECLARE
     v_cant_filas INT := 0;
 BEGIN
-    -- Determinar la cantidad de filas involucradas (items de pedido o items de factura)
+    -- Determinar la cantidad de filas involucradas (primero se intenta con el pedido)
     IF NEW.codPedido IS NOT NULL THEN
         SELECT COUNT(*) INTO v_cant_filas FROM itemsPedido WHERE nroPedido = NEW.codPedido;
     ELSE -- si no se tiene un numero de pedido se asume que los items se cargaron previamente en la factura
         SELECT COUNT(*) INTO v_cant_filas FROM itemsFactura WHERE nroFactura = NEW.nroFactura;
     END IF;
 
-    -- Caso 1: Creación de Factura (Facturación de Pedido)
+    -- facturacion
     IF TG_OP = 'INSERT' THEN
         INSERT INTO logs (operacion, nroPedido, nroFactura, fechaHora, usuario, filasInvolucradas)
         VALUES ('FACTURACION', NEW.codPedido, NEW.nroFactura, CURRENT_TIMESTAMP, SESSION_USER, v_cant_filas+1); -- El +1 es para contar la factura en si misma
 
-    -- Caso 2: Anulación de Factura
+    -- anulacion
     ELSIF TG_OP = 'UPDATE' THEN
 		INSERT INTO logs (operacion, nroPedido, nroFactura, fechaHora, usuario, filasInvolucradas)
-		VALUES ('ANULACION', NEW.codPedido, NEW.nroFactura, CURRENT_TIMESTAMP, NEW.usuarioAnulacion, v_cant_filas+1); -- El +1 es para contar la factura en si misma
+		VALUES ('ANULACION', NEW.codPedido, NEW.nroFactura, CURRENT_TIMESTAMP, SESSION_USER, v_cant_filas+1); -- El +1 es para contar la factura en si misma
     END IF;
+
+	-- Eso del +1 es algo que tambien lo pregunté la ultima clase
 
     RETURN NEW;
 END;

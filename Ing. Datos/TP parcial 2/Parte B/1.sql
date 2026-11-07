@@ -14,9 +14,14 @@ p_titulo_noticia VARCHAR,
 p_nombre_categoria VARCHAR
 )
 LANGUAGE plpgsql
-AS $$ DECLARE v_id_categoria_nueva INT; v_cant_noticias INT; v_id_noticia INT; v_id_categoria_actual INT; 
+AS $$ DECLARE 
+v_id_categoria_nueva INT; 
+v_cant_noticias INT; 
+v_id_noticia INT; 
+v_id_categoria_actual INT; 
 BEGIN 
---  Verificar si la categoría destino existe 
+
+--  verificar si la categoría destino existe 
 SELECT idCategoria INTO v_id_categoria_nueva FROM categorias WHERE LOWER(nombre) = LOWER(p_nombre_categoria);
 
 IF v_id_categoria_nueva IS NULL THEN
@@ -24,14 +29,15 @@ IF v_id_categoria_nueva IS NULL THEN
 	RETURN; 
 END IF;
 
--- 1 y 3. Verificar existencia de la noticia y validar que sea ÚNICA 
-SELECT COUNT(*), MAX(idNoticia), MAX(idCategoria) INTO v_cant_noticias, v_id_noticia, v_id_categoria_actual FROM noticias 
+-- Verificar que exista una sola noticia con ese nombre
+SELECT COUNT(*), MAX(idNoticia), MAX(idCategoria) INTO v_cant_noticias, v_id_noticia, v_id_categoria_actual 
+FROM noticias 
 WHERE LOWER(titulo) = LOWER(p_titulo_noticia);      
 IF v_cant_noticias = 0 THEN 
-	RAISE NOTICE 'La noticia con título "%" no existe.', p_titulo_noticia;
+	RAISE NOTICE 'No existe noticia con el titulo %', p_titulo_noticia;
 	RETURN;
 ELSIF v_cant_noticias > 1 THEN 
-	RAISE NOTICE 'Error: Existen % noticias con el título "%". El procedimiento solo puede modificar una única noticia.', v_cant_noticias, p_titulo_noticia; 
+	RAISE NOTICE 'Existen más de una noticia con el título "%"', p_titulo_noticia; 
 	RETURN; 
 END IF;
 
@@ -41,26 +47,12 @@ IF v_id_categoria_actual = v_id_categoria_nueva THEN
 	RETURN;
 END IF;
 
--- Modificación de la categoría 
 UPDATE noticias SET idCategoria = v_id_categoria_nueva WHERE idNoticia = v_id_noticia;
 RAISE NOTICE 'Categoría de la noticia "%" modificada con éxito a "%".', p_titulo_noticia, p_nombre_categoria; 
 END; $$;
 
--- =============================================================================
--- EJEMPLOS DE PRUEBA DE EJECUCIÓN (Usando CALL en PostgreSQL)
--- =============================================================================
 
--- Caso 1: Cambio exitoso (Noticia 'Lanzamiento de PostgreSQL 17' pasa de Tecnología a Deportes)
 -- CALL sp_cambiar_categoria_noticia('Lanzamiento de PostgreSQL 17', 'Deportes');
 
--- Caso 2: Error - Categoría inexistente
--- CALL sp_cambiar_categoria_noticia('Lanzamiento de PostgreSQL 17', 'Musica');
-
--- Caso 3: Error - Noticia inexistente
--- CALL sp_cambiar_categoria_noticia('Noticia Inexistente 123', 'Deportes');
-
--- Caso 4: Error - Misma categoría
--- CALL sp_cambiar_categoria_noticia('Lanzamiento de PostgreSQL 17', 'Tecnología');
-
--- Caso 5: Error - Múltiples noticias con el mismo título
+-- MUltiples noticias con el mismo tItulo
 -- CALL sp_cambiar_categoria_noticia('Noticia Con Titulo Duplicado', 'Tecnología');

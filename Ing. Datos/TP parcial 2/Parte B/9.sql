@@ -23,12 +23,11 @@ BEGIN
             a.titulo AS titulo_album,
             a.fecha AS fecha_album,
             ar.nombre AS nombre_artista
-        FROM albumes a
-        JOIN artistas ar ON a.codArtista = ar.codArtista
+        FROM albumes a JOIN artistas ar ON a.codArtista = ar.codArtista
         ORDER BY ar.nombre, a.fecha
     ) LOOP
 
-        -- Si cambia el artista, se imprime el encabezado del Artista y la sección Discografía
+        -- si cambia el artista, se imprime el encabezado del Artista y la sección Discografía
         IF v_artista_actual <> v_album.nombre_artista THEN
             v_artista_actual := v_album.nombre_artista;
 			RAISE NOTICE '-------------------------------------------------------';
@@ -36,11 +35,11 @@ BEGIN
             RAISE NOTICE 'Discografia';
         END IF;
 
-        -- Formato de fecha del álbum (DD/MM/YY)
+        -- Formato de fecha del albun
         v_fecha_fmt := TO_CHAR(v_album.fecha_album, 'DD/MM/YY');
         RAISE NOTICE '    % : %', v_fecha_fmt, v_album.titulo_album;
 
-        -- Bucle FOR implícito para iterar sobre los temas del álbum actual
+        -- bucle para los temas
         FOR v_tema IN (
             SELECT 
                 orden,
@@ -51,10 +50,9 @@ BEGIN
             ORDER BY orden
         ) LOOP
 
-            -- Formato del orden a 2 dígitos (ej: 01, 02)
             v_orden_fmt := LPAD(v_tema.orden::VARCHAR, 2, '0');
 
-            -- Formato de duración MM:SS
+            -- duración en MM:SS
             v_duracion_fmt := LPAD((v_tema.duracion / 60)::VARCHAR, 2, '0') || ':' || LPAD((v_tema.duracion % 60)::VARCHAR, 2, '0');
 
             RAISE NOTICE '        % – % %', v_orden_fmt, v_tema.titulo_tema, v_duracion_fmt;
@@ -63,4 +61,4 @@ BEGIN
 END;
 $$;
 
-CALL sp_listado_discografia();
+-- CALL sp_listado_discografia();
