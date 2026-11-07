@@ -1,4 +1,10 @@
--- Limpieza previa de tablas si existen (para ejecución limpia)
+-- Limpieza de tablas
+-- no elimina tablas generadas dinamicamente por prosedimientos
+DROP TABLE IF EXISTS temas CASCADE;
+DROP TABLE IF EXISTS albumes CASCADE;
+DROP TABLE IF EXISTS generos CASCADE;
+DROP TABLE IF EXISTS artistas CASCADE;
+
 DROP TABLE IF EXISTS votaciones CASCADE;
 DROP TABLE IF EXISTS privilegios CASCADE;
 DROP TABLE IF EXISTS comentarios CASCADE;
@@ -15,7 +21,4 @@ DROP TABLE IF EXISTS pedidos CASCADE;
 DROP TABLE IF EXISTS clientes CASCADE;
 DROP TABLE IF EXISTS logs CASCADE;
 
-DROP TABLE IF EXISTS temas CASCADE;
-DROP TABLE IF EXISTS albumes CASCADE;
-DROP TABLE IF EXISTS generos CASCADE;
-DROP TABLE IF EXISTS artistas CASCADE;
+

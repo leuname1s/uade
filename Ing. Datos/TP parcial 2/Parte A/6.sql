@@ -16,13 +16,8 @@ WHERE f.codCliente = p_codCliente AND inf.codProducto IN (
 	HAVING COUNT(DISTINCT c.codProductoComponente) >= 4 );
 RETURN v_monto_total; END; $$;
 
--- Ejemplos de uso:
 
--- 1. Cliente 1 (Tech Solutions S.A. - Compró el producto 10 que tiene 4 componentes por $2000):
--- SELECT fn_monto_facturado_productos_compuestos(1); -- Devuelve 2000.00
+-- SELECT fn_monto_facturado_productos_compuestos(1);
 
--- 2. Cliente 2 (Comercial del Sur - Compró el producto 10 con 10% desc por $900):
- SELECT fn_monto_facturado_productos_compuestos(3); -- Devuelve 900.00
-
--- 3. Intento de llamada enviando NULL (Lanza EXCEPCIÓN):
--- SELECT fn_monto_facturado_productos_compuestos(NULL);
+-- facturo el producto 10 con 10% desc por $900
+-- SELECT fn_monto_facturado_productos_compuestos(2);

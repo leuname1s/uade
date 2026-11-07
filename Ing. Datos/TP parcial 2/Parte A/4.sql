@@ -32,7 +32,8 @@ SELECT p_fecha AS fecha_consultada,
 	v.respuesta3 AS respuesta_3,
 	v.votosOp3 AS votos_resp_3
 FROM votaciones v JOIN noticias n ON v.idNoticia = n.idNoticia LEFT JOIN categorias c ON n.idCategoria = c.idCategoria 
-WHERE p_fecha BETWEEN v.fechaInicio::DATE AND v.fechaFin::DATE; END; $$;
+WHERE p_fecha BETWEEN v.fechaInicio::DATE AND v.fechaFin::DATE;
 
--- Ejemplo de uso:
--- SELECT * FROM fn_votos_por_fecha('2026-03-05');
+END; $$;
+
+-- SELECT * FROM fn_votos_por_fecha('2024-03-25');

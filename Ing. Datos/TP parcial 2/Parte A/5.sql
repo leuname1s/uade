@@ -8,13 +8,16 @@ nombre_usuario VARCHAR
 )
 LANGUAGE plpgsql
 AS $$ BEGIN RETURN QUERY 
+
 SELECT u.nombre AS nombre_usuario 
 FROM usuarios u 
-JOIN comentarios com ON u.idUsuario = com.idUsuario 
-JOIN noticias n ON com.idNoticia = n.idNoticia 
-JOIN categorias cat ON n.idCategoria = cat.idCategoria 
-WHERE LOWER(cat.nombre) IN ('economía', 'economia') 
-AND com.fecha >= CURRENT_TIMESTAMP - INTERVAL '30 days' 
-GROUP BY u.idUsuario, u.nombre HAVING COUNT(com.idComentario) >= 20; END; $$;
+	JOIN comentarios com ON u.idUsuario = com.idUsuario 
+	JOIN noticias n ON com.idNoticia = n.idNoticia 
+	JOIN categorias cat ON n.idCategoria = cat.idCategoria 
+WHERE LOWER(cat.nombre) IN ('economía', 'economia') AND com.fecha >= CURRENT_TIMESTAMP - INTERVAL '30 days' 
+GROUP BY u.idUsuario, u.nombre 
+HAVING COUNT(com.idComentario) >= 20;
+
+END; $$;
 
 SELECT * FROM fn_usuarios_activos_economia();
