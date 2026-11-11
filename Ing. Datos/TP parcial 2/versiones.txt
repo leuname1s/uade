@@ -1,0 +1,10 @@
+Para hacer este TPO se utilizó:
+- Postgres 18.0
+- pgAdmin 4 v9.8
+
+para probar:
+- Ejecutar script de creación de tablas
+- Ejecutar script de inserción de datos
+- Ejecutar script de creación de triggers (Parte C)
+
+La mayoría de script de creación de procedimientos tienen una sección debajo para poder probar el procedimiento en el mismo archivo
